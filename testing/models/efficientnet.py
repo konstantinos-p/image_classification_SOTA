@@ -122,7 +122,7 @@ class Final_Layer(nn.Module):
 
 
 
-def make_model_v3():
+def make_model():
     '''
     Function that returns the full model.
     '''

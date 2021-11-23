@@ -64,7 +64,7 @@ train_loader_pretrain = generate_dataloader(TRAIN_DIR, "train",batch_size,use_cu
 val_loader_pretrain = generate_dataloader(val_img_dir, "val",batch_size,use_cuda,
                                  transform=preprocess_transform_pretrain)
 
-model_EfficientNet_v3 = efficientnet.make_model_v3()
+model_EfficientNet_v3 = efficientnet.make_model()
 from torch.utils.tensorboard import SummaryWriter
 writer = SummaryWriter('runs2')
 loss_fn = nn.CrossEntropyLoss()

@@ -130,3 +130,70 @@ def test_with_tensorboard(dataloader, model,loss_fn,writer,epoch,training_b_size
     writer.add_scalar('validation acc', correct, epoch * training_b_size)
 
     print("Test Error: \n" + "Accuracy: " + str(100*correct) + "Avg loss:" +str(test_loss))
+
+
+def train_with_tensorboard_patch(dataloader, model, loss_fn, optimizer, writer, epoch):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    size = len(dataloader.dataset)
+    model.train()
+    running_loss = 0
+    running_correct = 0
+
+    patchificator = nn.Unfold(kernel_size=(14, 14), stride=14)
+    patchificator.to(device)
+
+    for batch, (Xf, y) in enumerate(dataloader):
+
+        Xf, y = Xf.to(device), y.to(device)
+
+        # Turn image to patches
+        X = patchificator(Xf)
+        X = torch.transpose(X, 2, 1)
+
+        # Compute the prediction error
+        pred = model(X)
+        loss = loss_fn(pred, y)
+
+        # Backpropagation
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+        running_correct += (pred.argmax(1) == y).type(torch.float).sum().item() / dataloader.batch_size
+        if batch % 100 == 0:
+            loss, current = loss.item(), batch * len(X)
+            print("loss: " + str(loss) + " " + str(current / size))
+
+            writer.add_scalar('training loss', running_loss / 100, epoch * len(dataloader) + batch)
+            writer.add_scalar('training acc', running_correct / 100, epoch * len(dataloader) + batch)
+            running_loss = 0.0
+            running_correct = 0.0
+
+
+def test_with_tensorboard_patch(dataloader, model, loss_fn, writer, epoch, training_b_size):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    size = len(dataloader.dataset)
+    num_batches = len(dataloader)
+    model.eval()
+    test_loss, correct = 0, 0
+    patchificator = nn.Unfold(kernel_size=(14, 14), stride=14)
+    patchificator.to(device)
+    with torch.no_grad():
+        for Xf, y in dataloader:
+            Xf, y = Xf.to(device), y.to(device)
+
+            # Turn image to patches
+            X = patchificator(Xf)
+            X = torch.transpose(X, 2, 1)
+
+            pred = model(X)
+            test_loss += loss_fn(pred, y).item()
+            correct += (pred.argmax(1) == y).type(torch.float).sum().item()
+
+    test_loss /= num_batches
+    correct /= size
+    writer.add_scalar('validation loss', test_loss, epoch * training_b_size)
+    writer.add_scalar('validation acc', correct, epoch * training_b_size)
+
+    print("Test Error: \n" + "Accuracy: " + str(100 * correct) + "Avg loss:" + str(test_loss))
