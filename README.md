@@ -5,14 +5,18 @@ Some tests on the state of the art in image classification (as of November 2021)
 - EfficientNet https://arxiv.org/abs/1905.11946
 - Vision Transformer (ViT) https://arxiv.org/abs/2010.11929
 
+The dataset that I tested against, was the TinyImagenet dataset.
+
 ## Results
+The original ResNet is a standard model of choice that should perform reasonably well on any image classification task. EfficientNet should match the performance of the ResNet but with much smaller storage cost. The Vision Transformer should ideally match the performance of the other two approaches.
+
 The following table summarizes the results of the experiments. 
 
 | Model        | Validation Accuracy           | Storage  |
 | ------------- |-------------:| -----:|
 | ResNet      | 35% | 45MB |
 | EfficientNet      | 34%    |   5MB |
-| ViT | 25%   |  30MB   |
+| ViT | 25%   |  11MB   |
 
 We see that we have confirmed at least part of the claims of the papers. Using the **ResNet** we managed to achieve **35% accuracy** on the validation set, but at the cost of having to store a large model at **45MB**. Using the EfficientNet we managed to achieve comparable validation accuracy at **34%** but at considerably smaller storage cost at **5MB**. The **Vision Transformer** didn't manage to reach such a high accuracy, but still proved it's merits, reaching **25% accuracy** at **30MB** storage cost. Randomly choosing the classes would result in only 0.5% accuracy. We trained using a constrained budget, at only 3 epochs of training, except for the ViT which we trained for 7 epochs. 
 
