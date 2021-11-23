@@ -5,6 +5,17 @@ Some tests on the state of the art in image classification (as of November 2021)
 - EfficientNet https://arxiv.org/abs/1905.11946
 - Vision Transformer (ViT) https://arxiv.org/abs/2010.11929
 
+## Results
+The following table summarizes the results of the experiments. 
+
+| Model        | Validation Accuracy           | Storage  |
+| ------------- |-------------:| -----:|
+| ResNet      | 35% | 45MB |
+| EfficientNet      | 34%    |   5MB |
+| ViT | 25%   |  30MB   |
+
+We see that we have confirmed at least part of the claims of the papers. Using the **ResNet** we managed to achieve **35% accuracy** on the validation set, but at the cost of having to store a large model at **45MB**. Using the EfficientNet we managed to achieve comparable validation accuracy at **34%** but at considerably smaller storage cost at **5MB**. The **Vision Transformer** didn't manage to reach such a high accuracy, but still proved it's merits, reaching **25% accuracy** at **30MB** storage cost. Randomly choosing the classes would result in only 0.5% accuracy. We trained using a constrained budget, at only 3 epochs of training, except for the ViT which we trained for 7 epochs. 
+
 ## Original ResNet
 The original resnet model proposed in 
 
@@ -44,13 +55,4 @@ Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for ima
 
 The main idea in this paper is to use a standard multihead attention architecture over patches of images for image classification. The attention mechanism learns to encode biases similar to convolutions as has been demonstrated before in another paper. Cordonnier, Jean-Baptiste, Andreas Loukas, and Martin Jaggi. "On the relationship between self-attention and convolutional layers." arXiv preprint arXiv:1911.03584 (2019). The resulting architecture called ViT (Visual Transformer) tends to outperform or perform similarly to other architectures such as ResNets while having a much smaller computational budget. The main caveat is that vision tranformers underperform compared to resnets when data is "scarce" and there is no pretraining. Intuitively the convolution bias in very useful in this regime. However this changes when we have access to more abundant data. In this setting ViTs can both learn convolutions in the early layers AND encode longer dependencies in subsequent layers.
 
-## Results
-The following table summarizes the results of the experiments. 
 
-| Model        | Validation Accuracy           | Storage  |
-| ------------- |-------------:| -----:|
-| ResNet      | 35% | 45MB |
-| EfficientNet      | 34%    |   5MB |
-| ViT | 25%   |  30MB   |
-
-We see that we have confirmed at least part of the claims of the papers. Using the **ResNet** we managed to achieve **35% accuracy** on the validation set, but at the cost of having to store a large model at **45MB**. Using the EfficientNet we managed to achieve comparable validation accuracy at **34%** but at considerably smaller storage cost at **5MB**. The **Vision Transformer** didn't manage to reach such a high accuracy, but still proved it's merits, reaching **25% accuracy** at **30MB** storage cost. Randomly choosing the classes would result in only 0.5% accuracy. We trained using a constrained budget, at only 3 epochs of training, except for the ViT which we trained for 7 epochs. 
