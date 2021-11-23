@@ -48,6 +48,8 @@ The main idea in this paper is to use a standard multihead attention architectur
 The following table summarizes the results of the experiments. 
 | Model        | Validation Accuracy           | Storage  |
 | ------------- |-------------:| -----:|
-| ResNet      | ~35% | ~45MB |
-| EfficientNet      | ~35%    |   ~5MB |
-| ViT | ~25%   |  30MB   |
+| ResNet      | 35% | 45MB |
+| EfficientNet      | 34%    |   5MB |
+| ViT | 25%   |  30MB   |
+
+We see that we have confirmed at least part of the claims of the papers. Using the ResNet we managed to achieve 35% accuracy on the validation set, but at the cost of having to store a large model at 45MB. Using the EfficientNet we managed to achieve comparable validation accuracy at 34% but at considerably smaller storage cost at 5MB. The Vision Transformer didn't manage to reach such a high accuracy, but still proved it's merits, reaching 25% accuracy at 30MB storage cost. Rnadomly choosing the classes would result in only 0.5% accuracy. We trained using a constrained budget, at only 3 epochs of training, except for the ViT which we trained for 7 epochs. 
