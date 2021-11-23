@@ -1,9 +1,9 @@
 # Image Classification SOTA
 Some tests on the state of the art in image classification (as of November 2021). I've tested three architectures
 
-- Original ResNet
-- EfficientNet
-- Vision Transformer (ViT)
+- Original ResNet https://arxiv.org/abs/1512.03385
+- EfficientNet https://arxiv.org/abs/1905.11946
+- Vision Transformer (ViT) https://arxiv.org/abs/2010.11929
 
 ## Original ResNet
 The original resnet model proposed in 
