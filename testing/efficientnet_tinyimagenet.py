@@ -17,10 +17,15 @@ import urllib
 import zipfile
 import copy
 import torch.nn.functional as F
-import wget
-import zipfile
-from scripts import setup_TinyImagenet, generate_dataloader
+
+# noinspection PyUnresolvedReferences
 from models import efficientnet
+# noinspection PyUnresolvedReferences
+from scripts import setup_TinyImagenet, generate_dataloader, train_with_tensorboard, test_with_tensorboard
+
+
+
+cwd = os.getcwd()
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
@@ -64,3 +69,10 @@ from torch.utils.tensorboard import SummaryWriter
 writer = SummaryWriter('runs2')
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model_EfficientNet_v3.parameters(),lr=1e-3)
+
+epochs = 3
+for t in range(epochs):
+    print("Epoch "+ str(t+1) +"\n-----------------------")
+    train_with_tensorboard(train_loader_pretrain,model_EfficientNet_v3,loss_fn,optimizer,writer,t)
+    test_with_tensorboard(val_loader_pretrain, model_EfficientNet_v3,loss_fn,writer,t,len(train_loader_pretrain))
+print("Done!")
