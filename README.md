@@ -6,7 +6,7 @@ Some tests on the state of the art in image classification (as of November 2021)
 - Vision Transformer (ViT)
 
 ## Original ResNet
-The original resnet model
+The original resnet model proposed in 
 
 He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
 
