@@ -5,7 +5,7 @@ Some tests on the state of the art in image classification (as of November 2021)
 - EfficientNet https://arxiv.org/abs/1905.11946
 - Vision Transformer (ViT) https://arxiv.org/abs/2010.11929
 
-The dataset that I tested against, was the TinyImagenet dataset.
+The dataset that I tested against, was the TinyImagenet dataset. The dataset contains 100,000 images of 200 classes (500 for each class) downsized to 64×64 colored images. Each class has 500 training images, 50 validation images, and 50 test images.
 
 ## Results
 The original ResNet is a standard model of choice that should perform reasonably well on any image classification task. EfficientNet should match the performance of the ResNet but with much smaller storage cost. The Vision Transformer should ideally match the performance of the other two approaches.
