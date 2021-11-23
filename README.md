@@ -18,7 +18,13 @@ Let's first define the main building block of the Resnet architecture, the ResNe
 
 ![image info](resnet_block.png)
 
-The main feature of the ResNet block is that it computes $\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})+\boldsymbol{x}$ instead of $\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})$. It therefore consists of the usual operations of a convolutional architecture, with the modification that the input to a layer is added to the output.
+The main feature of the ResNet block is that it computes 
+\begin{equation}
+\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})+\boldsymbol{x}
+\end{equation}
+instead of 
+$\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})$
+. It therefore consists of the usual operations of a convolutional architecture, with the modification that the input to a layer is added to the output.
 
 ## EfficientNet
 The EfficientNet model proposed in
