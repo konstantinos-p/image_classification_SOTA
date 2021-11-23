@@ -6,9 +6,20 @@ Some tests on the state of the art in image classification (as of November 2021)
 - Vision Transformer (ViT)
 
 ## Original ResNet
+The original resnet model
+
+He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.
+
+, for the task of Image classification. I will train and evaluate a small version of this model on the tiny Imagenet dataset. The dataset contains 100,000 images of 200 classes (500 for each class) downsized to 64×64 colored images. Each class has 500 training images, 50 validation images, and 50 test images.
+
+In implementing the Resnet I will follow the excellent "The Annotated Transformer" https://nlp.seas.harvard.edu/2018/04/03/attention.html which provides a very coincice way of implementing large and complex models.
+
+Let's first define the main building block of the Resnet architecture, the ResNet block. 
+
+The main feature of the ResNet block is that it computes $\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})+\boldsymbol{x}$ instead of $\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})$. It therefore consists of the usual operations of a convolutional architecture, with the modification that the input to a layer is added to the output.
 
 ## EfficientNet
-In this notebook I will implement the EfficientNet model proposed in
+The EfficientNet model proposed in
 
 Tan, Mingxing, and Quoc Le. "Efficientnet: Rethinking model scaling for convolutional neural networks." International Conference on Machine Learning. PMLR, 2019.
 
