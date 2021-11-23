@@ -45,3 +45,9 @@ Dosovitskiy, Alexey, et al. "An image is worth 16x16 words: Transformers for ima
 The main idea in this paper is to use a standard multihead attention architecture over patches of images for image classification. The attention mechanism learns to encode biases similar to convolutions as has been demonstrated before in another paper. Cordonnier, Jean-Baptiste, Andreas Loukas, and Martin Jaggi. "On the relationship between self-attention and convolutional layers." arXiv preprint arXiv:1911.03584 (2019). The resulting architecture called ViT (Visual Transformer) tends to outperform or perform similarly to other architectures such as ResNets while having a much smaller computational budget. The main caveat is that vision tranformers underperform compared to resnets when data is "scarce" and there is no pretraining. Intuitively the convolution bias in very useful in this regime. However this changes when we have access to more abundant data. In this setting ViTs can both learn convolutions in the early layers AND encode longer dependencies in subsequent layers.
 
 ## Results
+The following table summarizes the results of the experiments. 
+| Model        | Validation Accuracy           | Storage  |
+| ------------- |-------------:| -----:|
+| ResNet      | ~35% | ~45MB |
+| EfficientNet      | ~35%    |   ~5MB |
+| ViT | ~25%   |  30MB   |
