@@ -19,7 +19,7 @@ Let's first define the main building block of the Resnet architecture, the ResNe
 ![image info](resnet_block.png)
 
 The main feature of the ResNet block is that it computes
-<img src="https://render.githubusercontent.com/render/math?math=(\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})+\boldsymbol{x})">
+<img src="https://render.githubusercontent.com/render/math?math={\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})+\boldsymbol{x}}">
 instead of 
 $\boldsymbol{y} = \mathrm{f}(\boldsymbol{x},{\mathrm{W}_i})$
 . It therefore consists of the usual operations of a convolutional architecture, with the modification that the input to a layer is added to the output.
